@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ================================================ -->
+<!--   Apache Ant，是一个将软件编译、测试、部署等步骤联系在一起加以自动化的一个工具，大多用于Java环境中的软件开发。由Apache软件基金会所提供。默认情况下，XML文件名为build.xml  
+		Sample buildfile for jar components             -->
+<!--  target: init, compile, archive, clean 4个target, 不同target之间有依赖关系, 
+        target指明ant所做工作的目标, 例如archive将class文件打包成jar, -->
+<!-- ================================================ -->
+<project name="MyProject" default="compile" basedir=".">
+	<property name="src.dir" value="E:\p\workspace\MyProject\src" />
+	<property name="dest.dir" value="E:\p\workspace\MyProject\dest" />
+	<property name="dest-jar-name" value="helloAnt.jar"/>
+	<!-- - - - - - - - - - - - - - -->
+	<!--  target: init             -->
+	<!-- - - - - - - - - - - - - - -->
+	<target name="init"  depends="">
+		 <!-- 删除、创建该文件夹 -->
+		<mkdir dir="build/classes" />
+		<mkdir dir="dest" />	
+	</target>
+
+	<!-- ========================= -->
+	<!--   target: build           -->
+	<!-- =========================
+	<target name="build" depends="init">
+		<javac srcdir="${src.dir}" destdir="${dest.dir}">
+		</javac>
+	</target> -->
+	
+	<!-- ========================= -->
+	<!--   target: compile         -->
+	<!-- ========================= -->
+	<target name="compile" depends="init">
+		 <javac srcdir="src" destdir="build/classes" />
+	</target>
+
+	<!-- ========================= -->
+	<!--   target: archive         -->
+	<!-- ========================= -->
+	<target name="archive" depends="compile">
+		<jar basedir="build/classes" destfile="dest/${dest-jar-name}" />
+	</target>
+	
+	<!-- ========================= -->
+	<!--   target: clean         -->
+	<!-- =========================	
+
+	<target name="clean" depends="">
+            <delete dir="build/classes"/>
+            <delete dir="build"/>
+            <delete dir="dest"/>
+	</target> -->
+
+</project>

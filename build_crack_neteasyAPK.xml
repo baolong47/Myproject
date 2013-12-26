@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+1、将原本的apk中的文件解压出来。分成两个文件夹，orgin_dex和orgin_nodex。其中orgin_dex仅放解压出来的classes.dex文件，orgin_nodex放剩余的所有文件。
+2、创建第三个文件夹dirty_dex，放修改之后编译出的classes.dex文件。
+3、利用ant打包。build.xml如下： 
+-->
+<project name="MyProject" default="init"  basedir=".">
+	<zip destfile="cracked.apk" duplicate="add">
+	  <fileset dir="D:\\ant\\orgin_nodex\\"/>
+	  <fileset dir="D:\\ant\\dirty_dex\\"/>
+	  <fileset dir="D:\\ant\\orgin_dex\\"/>
+	</zip>
+	
+	<target name="init"  depends="">
+	</target>
+</project>
